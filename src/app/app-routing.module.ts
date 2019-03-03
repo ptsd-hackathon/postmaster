@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'home', component: HomeComponent }
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
