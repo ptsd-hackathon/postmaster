@@ -1,11 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
+import {GeolocationDataService} from "../../device-information/geolocation-data.service";
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.component.scss']
+    selector: 'page-login',
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.scss']
 })
 
 export class LoginComponent {
@@ -19,7 +20,7 @@ export class LoginComponent {
         password: ''
     };
 
-    constructor(private apollo: Apollo) {
+    constructor(private apollo: Apollo, private geolocationService: GeolocationDataService) {
     }
 
     login() {
@@ -34,9 +35,9 @@ export class LoginComponent {
                 password: this.account.password,
             },
         }).subscribe(({data}: { data: any }) => {
-            if(data.login){
-                console.log('success');
-            }else{
+            if (data.login) {
+                this.geolocationService.getCurrentPositionEveryTenSeconds();
+            } else {
                 alert('אימייל או סיסמא לא נכונים');
             }
         });
