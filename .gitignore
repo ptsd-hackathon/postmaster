@@ -1,6 +1,49 @@
 
-# Created by https://www.gitignore.io/api/node,ionic3,webstorm+all,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=node,ionic3,webstorm+all,visualstudiocode
+# Created by https://www.gitignore.io/api/node,ionic3,cordova,angular,webstorm,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=node,ionic3,cordova,angular,webstorm,visualstudiocode
+
+### Angular ###
+## Angular ##
+# compiled output
+/dist
+/tmp
+/app/**/*.js
+/app/**/*.js.map
+
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+
+### Cordova ###
+# gitignore template for the Cordova framework
+# website: https://cordova.apache.org/
+#
+# Recommended template: Node.gitignore
+
+# App platform binaries and built files
+/platforms
+
+# Optional to ignore plugin Git clones
+#/plugins
 
 ### Ionic3 ###
 # Log an tmp data
@@ -32,7 +75,6 @@ www/
 
 # Trash data
 $RECYCLE.BIN/
-.DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
 
@@ -126,7 +168,7 @@ typings/
 # Ignore all local history of files
 .history
 
-### WebStorm+all ###
+### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -194,55 +236,15 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-### WebStorm+all Patch ###
-# Ignores the whole .idea folder and all .iml files
-# See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
+### WebStorm Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-.idea/
-
-# Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
-
-*.iml
-modules.xml
-.idea/misc.xml
-*.ipr
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
 
 # Sonarlint plugin
- .idea/sonarlint
+.idea/sonarlint
 
-# End of https://www.gitignore.io/api/node,ionic3,webstorm+all,visualstudiocode
-
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
-
-*~
-*.sw[mnpcod]
-*.log
-*.tmp
-*.tmp.*
-log.txt
-*.sublime-project
-*.sublime-workspace
-.vscode/
-npm-debug.log*
-
-.idea/
-.ionic/
-.sourcemaps/
-.sass-cache/
-.tmp/
-.versions/
-coverage/
-www/
-node_modules/
-tmp/
-temp/
-platforms/
-plugins/
-plugins/android.json
-plugins/ios.json
-$RECYCLE.BIN/
-
-.DS_Store
-Thumbs.db
-UserInterfaceState.xcuserstate
+# End of https://www.gitignore.io/api/node,ionic3,cordova,angular,webstorm,visualstudiocode
