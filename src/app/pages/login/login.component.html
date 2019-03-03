@@ -1,14 +1,14 @@
 <ion-content padding class="masters">
     <div id="logo" padding text-center>
-            <ion-title>
-                    PTSFree
-                  </ion-title>
+        <ion-title>
+            PTSFree
+        </ion-title>
         <!-- <img src="../../../assets/img/logo.png"> -->
     </div>
     <div dir="rtl">
         <form>
-            <ion-input type="email" [(ngModel)]="account.email" name="email"  placeholder="אימייל"></ion-input>
-            <ion-input type="password" [(ngModel)]="account.password" name="password"  placeholder="סיסמא"></ion-input>
+            <ion-input type="email" [(ngModel)]="account.email" name="email" placeholder="אימייל"></ion-input>
+            <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="סיסמא"></ion-input>
             <div padding text-center>
                 <ion-button (click)="login()" round color="light" icon-right>
                     כניסה <ion-icon name="log-in"></ion-icon>
@@ -16,4 +16,7 @@
             </div>
         </form>
     </div>
+    <ion-button (click)="signUp()"> הרשמה
+        <ion-icon name="log-in"></ion-icon>
+    </ion-button>
 </ion-content>
