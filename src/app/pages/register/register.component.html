@@ -1,0 +1,18 @@
+<ion-content padding class="masters">
+  <div id="logo" padding text-center>
+    <ion-title>
+      הרשמה
+    </ion-title>
+  </div>
+  <div dir="rtl">
+    <form>
+      <ion-input type="email" [(ngModel)]="account.email" name="email"  placeholder="אימייל"></ion-input>
+      <ion-input type="password" [(ngModel)]="account.password" name="password"  placeholder="סיסמא"></ion-input>
+      <div padding text-center>
+        <ion-button (click)="signUp()" round color="light" icon-right>
+          כניסה <ion-icon name="log-in"></ion-icon>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
