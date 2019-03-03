@@ -36,7 +36,7 @@ export class LoginComponent {
             },
         }).subscribe(({data}: { data: any }) => {
             if (data.login) {
-                this.geolocationService.getCurrectPositionEveryTenSeconds();
+                this.geolocationService.getCurrentPositionEveryTenSeconds();
             } else {
                 alert('אימייל או סיסמא לא נכונים');
             }

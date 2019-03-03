@@ -9,7 +9,7 @@ export class GeolocationDataService {
     constructor(private apollo: Apollo) {
     }
 
-    public getCurrectPositionEveryTenSeconds() {
+    public getCurrentPositionEveryTenSeconds() {
         const options = {
             maximumAge: 3600000,
             enableHighAccuracy: true,
