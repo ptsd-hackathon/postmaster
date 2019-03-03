@@ -1,0 +1,20 @@
+<ion-content padding class="masters">
+    <div id="logo" padding text-center>
+            <ion-title>
+                    PTSFree
+                  </ion-title>
+        <!-- <img src="../../../assets/img/logo.png"> -->
+    </div>
+    <div>
+        <form (submit)="login()">
+            <ion-input type="username" [(ngModel)]="account.username" name="username" placeholder="שם משתמש">
+            </ion-input>
+            <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="סיסמא"></ion-input>
+            <div padding text-center>
+                <ion-button round color="light" icon-right>
+                    כניסה <ion-icon name="log-in"></ion-icon>
+                </ion-button>
+            </div>
+        </form>
+    </div>
+</ion-content>

@@ -1,5 +1,7 @@
 {
   "name": "postmaster",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
