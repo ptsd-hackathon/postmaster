@@ -10,9 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPage } from './pages/login/login';
 import { FormsModule } from '@angular/forms';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPage],
+  declarations: [AppComponent, LoginPage, SettingsComponent, HomeComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,  
     FormsModule
