@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {SettingsComponent} from './pages/settings/settings.component';
 import {HomeComponent} from './pages/home/home.component';
 import {NotificationComponent} from './pages/home/notification/notification.component';
+import {RegisterComponent} from "./pages/register/register.component";
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -19,7 +20,7 @@ import {GraphQLModule} from './graphql.module';
 import { SessionService } from './session/session.service';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, SettingsComponent, HomeComponent, NotificationComponent],
+    declarations: [AppComponent, LoginComponent, SettingsComponent, HomeComponent, NotificationComponent, RegisterComponent],
     entryComponents: [],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         FormsModule,
