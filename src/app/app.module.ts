@@ -12,9 +12,11 @@ import {SettingsComponent} from './pages/settings/settings.component';
 import {HomeComponent} from './pages/home/home.component';
 import {NotificationComponent} from './pages/home/notification/notification.component';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 // Apollo
 import {GraphQLModule} from './graphql.module';
+import { SessionService } from './session/session.service';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, SettingsComponent, HomeComponent, NotificationComponent],
@@ -22,11 +24,14 @@ import {GraphQLModule} from './graphql.module';
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         FormsModule,
         GraphQLModule,
+        IonicStorageModule.forRoot()
     ],
     providers: [
         StatusBar,
         Geolocation,
         SplashScreen,
+        SessionService,
+
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     ],
     bootstrap: [AppComponent]

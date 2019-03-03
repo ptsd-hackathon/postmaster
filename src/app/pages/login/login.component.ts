@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
+import { SessionService } from 'src/app/session/session.service';
 
 @Component({
   selector: 'page-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
         password: ''
     };
 
-    constructor(private apollo: Apollo) {
+    constructor(private apollo: Apollo, private sessionService: SessionService) {
     }
 
     login() {
@@ -35,7 +36,8 @@ export class LoginComponent {
             },
         }).subscribe(({data}: { data: any }) => {
             if(data.login){
-                console.log('success');
+                this.sessionService.setSessionValue('userEmail', this.account.email);
+                this.sessionService.setSessionValue('userPassword', this.account.password);
             }else{
                 alert('אימייל או סיסמא לא נכונים');
             }
