@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
 
@@ -21,59 +21,54 @@ export class RegisterComponent {
     newAccount = {
         email: '',
         password: '',
+        confirmPassword: '',
         firstName: '',
         lastName: '',
-        birthDate: {
-            day: '',
-            month: '',
-            year: '',
-        }
     };
 
     constructor(private apollo: Apollo) {
     }
 
     signUp() {
-        this.apollo.mutate({
-            mutation: gql`
+        if(!this.newAccount.email || !this.newAccount.password || !this.newAccount.confirmPassword||
+            !this.newAccount.firstName || !this.newAccount.lastName) {
+            alert('אנא מלא את כל השדות');
+        }
+        else if (this.newAccount.password !== this.newAccount.confirmPassword) {
+            alert('אימות הסיסמאות נכשל');
+        } else {
+            this.apollo.mutate({
+                mutation: gql`
                 mutation signUp(
                   $email: String!
                   $password: String!
                   $firstName: String!
                   $lastName: String!
-                  $birthDate: CustomDateInput!
                 ) {
                   registerUser(
                     user: {
                       email: $email
                       password: $password
-                      userInfo: {
-                        privateName: $firstName
-                        lastName: $lastName
-                        dateOfBirth: $birthDate
-                      }
+                      privateName: $firstName
+                      lastName: $lastName
                     }
                   )
                 }
               `,
-            variables: {
-                email: this.newAccount.email,
-                password: this.newAccount.password,
-                firstName: this.newAccount.firstName,
-                lastName: this.newAccount.lastName,
-                birthDate: {
-                    day: this.newAccount.birthDate.day,
-                    month: this.newAccount.birthDate.month,
-                    year: this.newAccount.birthDate.year,
+                variables: {
+                    email: this.newAccount.email,
+                    password: this.newAccount.password,
+                    firstName: this.newAccount.firstName,
+                    lastName: this.newAccount.lastName,
                 },
-            },
-        }).subscribe(({data}: { data: any }) => {
-            console.log(data);
-            if (data.signUp) {
-                console.log('success');
-            } else {
-                alert('הייתה בעייה ביצירת המשתמש');
-            }
-        });
+            }).subscribe(({data}: { data: any }) => {
+                console.log(data);
+                if (data.registerUser) {
+                    console.log('success');
+                } else {
+                    alert('הייתה בעייה ביצירת המשתמש');
+                }
+            });
+        }
     }
 }
