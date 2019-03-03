@@ -29,12 +29,16 @@ constructor(private platform: Platform, private oneSignal: OneSignal, private st
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
     
-    this.oneSignal.handleNotificationReceived().subscribe(() => {
+    this.oneSignal.handleNotificationReceived().subscribe(data => {
      // do something when notification is received
+     alert(data.payload);
+     console.log("DANIELL");
     });
     
-    this.oneSignal.handleNotificationOpened().subscribe(() => {
+    this.oneSignal.handleNotificationOpened().subscribe(data => {
       // do something when a notification is opened
+      alert("GUY");
+      console.log("DANIELLLL");
     });
     
     this.oneSignal.endInit();
