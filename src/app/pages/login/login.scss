@@ -1,33 +1,15 @@
-// .masters{
-//   --background: pink !important;
+ion-content{
+  --background: rgb(172, 241, 238) !important;
 
-// }
-page-login {
-    div#logo {
+}
+
+ion-input {
+  --background: #fff;
+  border-radius: 500px;
+  margin: 0 0 25px 0;
+}
+
+ion-title {
       margin-top: 25px;
       margin-bottom: 12px;
     }
-
-    .content {
-      --background: pink !important;
-    }
-    ion-item {
-      --background: pink !important;
-    }
-  
-    ion-label {
-      color: pink;
-      text-align: center;
-      margin: 0;
-    }
-  
-    ion-label {
-      margin: 0 0 5px 0;
-    }
-  
-    ion-input {
-      background-color: #fff;
-      border-radius: 500px;
-      margin: 0 0 25px 0;
-    }
-  }
