@@ -1,54 +1,44 @@
-import { Component } from '@angular/core';
-// import { TranslateService } from '@ngx-translate/core';
-// import { IonicPage } from '@ionic/angular';
-// import {UserProvider} from "../../providers/user/user";
-// import {HttpProvider} from "../../providers/http/http";
-// import {User} from "../../models/user";
+import {Component, Input} from '@angular/core';
+import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 
-// @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
-  styleUrls: ['login.scss']
+    selector: 'page-login',
+    templateUrl: 'login.html',
+    styleUrls: ['login.scss'],
 })
 
 export class LoginPage {
-  // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
-  account = {
-    username: '',
-    fullname: '',
-    email: '',
-    password: ''
-  };
+    @Input() email: string;
+    @Input() password: string;
 
-  // Our translated text strings
-  private loginErrorString: string;
-  private opt: string = 'signin';
+    account = {
+        username: '',
+        fullname: '',
+        email: '',
+        password: ''
+    };
 
-  constructor() {
+    constructor(private apollo: Apollo) {
+    }
 
-  }
-//   constructor(public http:HttpProvider, public userProvider: UserProvider, public menuCtrl: MenuController, public navCtrl: NavController,
-//     public translateService: TranslateService) {
-//     this.menuCtrl.enable(false);
-//     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-//       this.loginErrorString = value;
-//     })
-//   }
-
-  // Attempt to login in through our User service
-  login() {
-    console.log(this.account.username + this.account.password);
-  }
-//   doLogin() {
-//     this.http.get('my-profile.json').subscribe((profile) => {
-//       this.userProvider.user = <User>profile;
-//       this.navCtrl.setRoot('ListFriendsPage');
-//     }, (err) => {
-//       console.error(err);
-//     });
-
-//   }
+    login() {
+        this.apollo.mutate({
+            mutation: gql`
+        mutation logIn($email: String!, $password: String!) {
+          login(email: $email, password: $password)
+        }
+      `,
+            variables: {
+                email: this.account.email,
+                password: this.account.password,
+            },
+        }).subscribe(({data}: { data: any }) => {
+            if(data.login){
+                console.log('success');
+            }else{
+                alert('אימייל או סיסמא לא נכונים');
+            }
+        });
+    }
 }
