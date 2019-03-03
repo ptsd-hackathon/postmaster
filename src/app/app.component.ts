@@ -31,7 +31,7 @@ constructor(private platform: Platform, private oneSignal: OneSignal, private st
     
     this.oneSignal.handleNotificationReceived().subscribe(data => {
      // do something when notification is received
-     alert(data.payload);
+     alert(data);
      console.log("DANIELL");
     });
     
