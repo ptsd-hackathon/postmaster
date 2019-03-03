@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { LoginPage } from './pages/login/login';
 import { FormsModule } from '@angular/forms';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 @NgModule({
   declarations: [AppComponent, LoginPage],
   entryComponents: [],
@@ -19,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     ],
   providers: [
     StatusBar,
+    Geolocation,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

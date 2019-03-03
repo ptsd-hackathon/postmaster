@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocationDataService {
-
-  constructor() { }
+  constructor(private geolocation: Geolocation) {}
 }
