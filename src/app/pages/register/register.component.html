@@ -1,16 +1,18 @@
 <ion-content padding class="masters">
   <div id="logo" padding text-center>
     <ion-title>
-      הרשמה
+      הרשמת משתמש חדש
     </ion-title>
   </div>
   <div dir="rtl">
     <form>
-      <ion-input type="email" [(ngModel)]="account.email" name="email"  placeholder="אימייל"></ion-input>
-      <ion-input type="password" [(ngModel)]="account.password" name="password"  placeholder="סיסמא"></ion-input>
+      <ion-input type="email" [(ngModel)]="newAccount.email" name="email"  placeholder="אימייל"></ion-input>
+      <ion-input type="password" [(ngModel)]="newAccount.password" name="password"  placeholder="סיסמא"></ion-input>
+      <ion-input type="password" [(ngModel)]="newAccount.confirmPassword" name="password" placeholder="אימות סיסמא"></ion-input>
+      <ion-input type="text" [(ngModel)]="newAccount.firstName" name="firstName"  placeholder="שם פרטי"></ion-input>
+      <ion-input type="text" [(ngModel)]="newAccount.lastName" name="lastName"  placeholder="שם משפחה"></ion-input>
       <div padding text-center>
-        <ion-button (click)="signUp()" round color="light" icon-right>
-          כניסה <ion-icon name="log-in"></ion-icon>
+        <ion-button (click)="signUp()" round color="light" icon-right>הרשמה<ion-icon name="sign-up"></ion-icon>
         </ion-button>
       </div>
     </form>
