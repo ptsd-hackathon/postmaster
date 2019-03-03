@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 // @IonicPage()
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
-  styleUrls: ['login.scss']
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.scss']
 })
 
-export class LoginPage {
+export class LoginComponent {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
