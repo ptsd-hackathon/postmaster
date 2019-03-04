@@ -24,7 +24,7 @@ export class NotificationService {
       this.oneSignal.handleNotificationReceived().subscribe(data => {
        // do something when notification is received
        alert(data.payload.title);
-       sessiosnService.getSessionValue("notification-id").then(data => alert(data));
+       sessiosnService.getSessionValue("notification-id");
       });
 
       this.oneSignal.getIds().then(id => {
@@ -34,7 +34,7 @@ export class NotificationService {
       this.oneSignal.handleNotificationOpened().subscribe(data => {
         // do something when a notification is opened
         alert(data.notification.payload.body);
-        sessiosnService.getSessionValue("notification-id").then(data => alert(data));
+        sessiosnService.getSessionValue("notification-id");
       });
       
       this.oneSignal.endInit();
