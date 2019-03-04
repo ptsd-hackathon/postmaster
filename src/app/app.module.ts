@@ -18,9 +18,10 @@ import { IonicStorageModule } from '@ionic/storage';
 // Apollo
 import {GraphQLModule} from './graphql.module';
 import { SessionService } from './session/session.service';
+import {TreatmentComponent} from "./pages/treatment/treatment.component";
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, SettingsComponent, HomeComponent, NotificationComponent, RegisterComponent],
+    declarations: [AppComponent, LoginComponent, SettingsComponent, HomeComponent, NotificationComponent, RegisterComponent, TreatmentComponent],
     entryComponents: [],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         FormsModule,

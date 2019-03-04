@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-register',
@@ -26,7 +27,7 @@ export class RegisterComponent {
         lastName: '',
     };
 
-    constructor(private apollo: Apollo) {
+    constructor(private apollo: Apollo, private router: Router) {
     }
 
     signUp() {
@@ -65,6 +66,7 @@ export class RegisterComponent {
                 console.log(data);
                 if (data.registerUser) {
                     console.log('success');
+                    this.router.navigateByUrl('/login');
                 } else {
                     alert('הייתה בעייה ביצירת המשתמש');
                 }
