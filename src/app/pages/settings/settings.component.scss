@@ -31,3 +31,16 @@ ion-list.dates > ion-item {
   border-radius: 3px;
   margin-bottom: 6px;
 }
+
+::ng-deep .swiper-pagination.swiper-pagination-bullets {
+  bottom: 80px;
+}
+
+.signup-col {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: block;
+  padding: 0 20px;
+}
