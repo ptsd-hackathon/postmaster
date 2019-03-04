@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
 import {Address, UserInformation} from "../../types";
+import {SessionService} from "../../session/session.service";
 
 @Component({
     selector: 'app-settings',
@@ -10,7 +11,8 @@ import {Address, UserInformation} from "../../types";
 })
 export class SettingsComponent implements OnInit {
 
-    places;
+    private places;
+    private weathers;
 
     slideOpts = {
         effect: 'flip'
@@ -50,7 +52,7 @@ export class SettingsComponent implements OnInit {
         stressfullPlaces: ['']
     };
 
-    constructor(private apollo: Apollo) {
+    constructor(private apollo: Apollo, private sessionService: SessionService) {
     }
 
     ngOnInit() {
@@ -68,11 +70,34 @@ export class SettingsComponent implements OnInit {
                 this.places = data.placesTypes;
             }
         });
+
+        this.apollo.query({
+            query: gql`
+        query weatherPrefrences {
+          weatherPreferences {
+            families {
+              type
+              title
+            }
+            range {
+              min
+              max
+            }
+          }
+        }
+        `
+        }).subscribe(({data}: { data: any }) => {
+            if (data.weatherPreferences) {
+                this.weathers = data.weatherPreferences.families;
+                console.log(this.weathers);
+            }
+        });
     }
 
     submit() {
-        this.apollo.mutate({
-            mutation: gql`
+        this.sessionService.getSessionValue('userEmail').then(email => {
+            this.apollo.mutate({
+                mutation: gql`
         mutation updateUserSettings(
           $gender: Gender
           $phoneNumber: String
@@ -99,38 +124,40 @@ export class SettingsComponent implements OnInit {
           )
         }
       `,
-            variables: {
-                gender: this.userInformation.gender,
-                phoneNumber: this.userInformation.phoneNumber,
-                initialPanicAttackDate: {
-                    day: (this.userInformation.initialPanicAttackDate as any).split("-")[1],
-                    month: (this.userInformation.initialPanicAttackDate as any).split("-")[2],
-                    year: (this.userInformation.initialPanicAttackDate as any).split("-")[0]
+                variables: {
+                    email: email,
+                    gender: this.userInformation.gender,
+                    phoneNumber: this.userInformation.phoneNumber,
+                    initialPanicAttackDate: {
+                        day: (this.userInformation.initialPanicAttackDate as any).split("-")[1],
+                        month: (this.userInformation.initialPanicAttackDate as any).split("-")[2],
+                        year: (this.userInformation.initialPanicAttackDate as any).split("-")[0]
+                    },
+                    sleep: {
+                        bedHour: this.userInformation.sleep.bedHour,
+                        wakingHour: this.userInformation.sleep.wakingHour
+                    },
+                    familyStatus: {
+                        isMarried: this.userInformation.familyStatus.isMarried,
+                        numberOfChildren: this.userInformation.familyStatus.numberOfChildren
+                    },
+                    isSmoking: this.userInformation.isSmoking,
+                    isShabbatKeeper: this.userInformation.isShabbatKeeper,
+                    address: {
+                        apartment: this.userInformation.address.apartment,
+                        city: this.userInformation.address.city,
+                        state: this.userInformation.address.state,
+                        street: this.userInformation.address.street
+                    },
+                    traumaType: this.userInformation.traumaType
                 },
-                sleep: {
-                    bedHour: this.userInformation.sleep.bedHour,
-                    wakingHour: this.userInformation.sleep.wakingHour
-                },
-                familyStatus: {
-                    isMarried: this.userInformation.familyStatus.isMarried,
-                    numberOfChildren: this.userInformation.familyStatus.numberOfChildren
-                },
-                isSmoking: this.userInformation.isSmoking,
-                isShabbatKeeper: this.userInformation.isShabbatKeeper,
-                address: {
-                    apartment: this.userInformation.address.apartment,
-                    city: this.userInformation.address.city,
-                    state: this.userInformation.address.state,
-                    street: this.userInformation.address.street
-                },
-                traumaType: this.userInformation.traumaType
-            },
-        }).subscribe(({data}: { data: any }) => {
-            if (data.setUserSettings) {
-                alert('פרטי משתמש נשמרו בהצלחה !');
-            } else {
-                alert('שמירת פרטי משתמש נכשלו ):');
-            }
+            }).subscribe(({data}: { data: any }) => {
+                if (data.setUserSettings) {
+                    alert('פרטי משתמש נשמרו בהצלחה !');
+                } else {
+                    alert('שמירת פרטי משתמש נכשלו ):');
+                }
+            });
         });
     }
 }
