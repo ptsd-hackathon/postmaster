@@ -5,6 +5,10 @@ ion-input {
   background: rgba(0,0,0,.02);
   border-radius: 4px;
   box-shadow: 0px 0px 5px 1px rgba(0,0,0,.1);
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  width: 350px;
+  max-width: 95%;
 }
 
 ion-title {
@@ -15,4 +19,15 @@ ion-title {
 ion-button{
   color: white;
   --background: #851c35;
+}
+
+ion-col:first-child {
+  width: 100px;
+}
+
+ion-list.dates > ion-item {
+  padding: 0 12px;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 3px;
+  margin-bottom: 6px;
 }
