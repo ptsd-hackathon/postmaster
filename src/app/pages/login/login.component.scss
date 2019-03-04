@@ -1,15 +1,19 @@
-ion-content {
-  --background: rgb(172, 241, 238) !important;
+//@import "../../../global";
 
-}
-
+$basicColor: #851c35;
 ion-input {
-  --background: #fff;
+  --background:#851c35;
   border-radius: 500px;
   margin: 0 0 25px 0;
+  --color: white;
 }
 
-ion-title {
+ion-button {
+  --background: #851c35;
   margin-top: 25px;
   margin-bottom: 12px;
+}
+
+ion-icon{
+  padding: 5px;
 }

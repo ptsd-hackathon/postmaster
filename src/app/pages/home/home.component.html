@@ -3,9 +3,9 @@
     <ion-title slot="end">
       מסך ראשי
     </ion-title>
-    <ion-button routerLink="/settings" >
+    <a routerLink="/settings" >
       <ion-icon class="settings" name="build"></ion-icon>
-    </ion-button>
+    </a>
 
   </ion-toolbar>
 </ion-header>
@@ -16,5 +16,5 @@
       <app-notification title="roni" description="blaaaa" severity="omg"></app-notification>
     </ion-item>
   </ion-list>
-  <ion-button size="large" color="secondary" routerLink="/treatment">אני צריך עזרה</ion-button>
+  <ion-button size="large" color="dark" class="help-button" routerLink="/treatment">אני צריך עזרה</ion-button>
 </ion-content>

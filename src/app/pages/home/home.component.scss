@@ -1,8 +1,16 @@
 ion-toolbar {
-    --background: rgb(172, 241, 238) !important;
+    --background: #851c35 !important;
+}
+
+ion-title {
+    --color: white;
 }
 
 .settings {
-    // width: 200%
     padding: 20px;
+    color: white;
+}
+
+.help-button {
+    text-align: center;
 }
