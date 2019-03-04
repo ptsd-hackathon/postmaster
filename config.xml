@@ -87,8 +87,6 @@
         <variable name="CALENDAR_USAGE_DESCRIPTION" value=" " />
         <variable name="CONTACTS_USAGE_DESCRIPTION" value=" " />
     </plugin>
-    <engine name="android" spec="7.1.4" />
-    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-mauron85-background-geolocation" spec="3.0.0-alpha.50">
         <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11+" />
         <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="26+" />
@@ -100,4 +98,6 @@
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
     <plugin name="cordova-sqlite-storage" spec="3.1.0" />
+    <engine name="android" spec="7.1.4" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

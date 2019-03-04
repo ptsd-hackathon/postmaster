@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { SessionService } from '../session/session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor( private oneSignal: OneSignal) {
+  constructor( private oneSignal: OneSignal, private sessiosnService:SessionService) {
   
       // OneSignal Code start:
       // Enable to debug issues:
@@ -23,11 +24,17 @@ export class NotificationService {
       this.oneSignal.handleNotificationReceived().subscribe(data => {
        // do something when notification is received
        alert(data.payload.title);
+       sessiosnService.getSessionValue("notification-id").then(data => alert(data));
       });
-      
+
+      this.oneSignal.getIds().then(id => {
+        sessiosnService.setSessionValue("notification-id",id.userId);
+      });
+
       this.oneSignal.handleNotificationOpened().subscribe(data => {
         // do something when a notification is opened
         alert(data.notification.payload.body);
+        sessiosnService.getSessionValue("notification-id").then(data => alert(data));
       });
       
       this.oneSignal.endInit();
