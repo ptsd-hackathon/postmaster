@@ -23,25 +23,20 @@ export class NotificationService {
       
       this.oneSignal.handleNotificationReceived().subscribe(data => {
        // do something when notification is received
+       sessiosnService.getSessionValue("userEmail").then
        alert(data.payload.title);
-       sessiosnService.getSessionValue("notification-id");
-      });
-
-      this.oneSignal.getIds().then(id => {
-        sessiosnService.setSessionValue("notification-id",id.userId);
       });
 
       this.oneSignal.handleNotificationOpened().subscribe(data => {
         // do something when a notification is opened
         alert(data.notification.payload.body);
-        sessiosnService.getSessionValue("notification-id");
       });
       
       this.oneSignal.endInit();
-  
-      // window["plugins"].OneSignal
-      //   .startInit("de69c52c-08b7-4984-8ecf-9f3eec316948", "YOUR_GOOGLE_PROJECT_NUMBER_IF_ANDROID")
-      //   .handleNotificationOpened(notificationOpenedCallback)
-      //   .endInit();
+
+      this.oneSignal.getIds().then(id => {
+        debugger;
+        sessiosnService.setSessionValue("notification-id",id.userId);
+      });
     };
   }  
