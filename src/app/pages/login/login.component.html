@@ -11,12 +11,13 @@
             <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="סיסמא"></ion-input>
             <div padding text-center>
                 <ion-button (click)="login()" round color="light" icon-right>
-                    כניסה <ion-icon name="log-in"></ion-icon>
+                    כניסה
+                    <ion-icon name="log-in"></ion-icon>
                 </ion-button>
             </div>
         </form>
     </div>
-    <ion-button (click)="signUp()"> הרשמה
+    <ion-button routerLink="/register"> הרשמה
         <ion-icon name="log-in"></ion-icon>
     </ion-button>
 </ion-content>

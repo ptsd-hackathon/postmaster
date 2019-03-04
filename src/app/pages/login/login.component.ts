@@ -3,6 +3,7 @@ import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
 import { SessionService } from 'src/app/session/session.service';
 import {GeolocationDataService} from "../../device-information/geolocation-data.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'page-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
     };
 
 
-    constructor(private apollo: Apollo, private geolocationService: GeolocationDataService, private sessionService: SessionService) {
+    constructor(private apollo: Apollo, private geolocationService: GeolocationDataService, private sessionService: SessionService, private router: Router) {
     }
 
     login() {
@@ -41,6 +42,7 @@ export class LoginComponent {
                 this.sessionService.setSessionValue('userEmail', this.account.email);
                 this.sessionService.setSessionValue('userPassword', this.account.password);
                 this.geolocationService.getCurrentPositionEveryTenSeconds();
+                this.router.navigateByUrl('/home');
             } else {
                 alert('אימייל או סיסמא לא נכונים');
             }
