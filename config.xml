@@ -87,7 +87,7 @@
         <variable name="CALENDAR_USAGE_DESCRIPTION" value=" " />
         <variable name="CONTACTS_USAGE_DESCRIPTION" value=" " />
     </plugin>
+    <plugin name="cordova-sqlite-storage" spec="3.1.0" />
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
-    <plugin name="cordova-sqlite-storage" spec="3.1.0" />
 </widget>
