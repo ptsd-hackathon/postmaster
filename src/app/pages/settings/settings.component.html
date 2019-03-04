@@ -1,30 +1,238 @@
 <ion-content padding dir="rtl">
-    <form (ngSubmit)="register()" #registerForm="ngForm">
-        <ion-row>
-            <ion-col>
-                <ion-list inset>
+    <form #registerForm="ngForm">
+        <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide>
+                <ion-list inset lines="none">
                     <ion-item>
-                        <ion-input type="text" placeholder="שם פרטי" name="name" [(ngModel)]="registerCredentials.name" required></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-input type="text" placeholder="אימייל" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-input type="password" placeholder="סיסמא" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-input type="password" placeholder="אימות סיסמא" name="confirmation_password" [(ngModel)]="registerCredentials.confirmation_password" required></ion-input>
+                        <ion-input type="text" placeholder="טלפון" name="phone"
+                                   [(ngModel)]="userInformation.phoneNumber" required></ion-input>
                     </ion-item>
 
+                    <ion-item>
+                        <ion-input type="text" placeholder="מדינה" name="state"
+                                   [(ngModel)]="userInformation.address.state" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="עיר" name="city" [(ngModel)]="userInformation.address.city"
+                                   required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="רחוב" name="street"
+                                   [(ngModel)]="userInformation.address.street" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="מספר בית" name="apartment"
+                                   [(ngModel)]="userInformation.address.apartment" required></ion-input>
+                    </ion-item>
                 </ion-list>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col class="signup-col">
-                <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
-            </ion-col>
-        </ion-row>
-
+            </ion-slide>
+            <ion-slide>
+                <ion-list inset lines="none">
+                    <ion-item>
+                        <ion-radio-group name="gender" [(ngModel)]="userInformation.gender">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-list-header>
+                                        <ion-label>מין</ion-label>
+                                    </ion-list-header>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>זכר</ion-label>
+                                        <ion-radio slot="start" value="MALE"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>נקבה</ion-label>
+                                        <ion-radio slot="start" value="FEMALE"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-item>
+                    <ion-item>
+                        <ion-radio-group name="isMarried" [(ngModel)]="userInformation.familyStatus.isMarried">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-list-header>
+                                        <ion-label>האם נשוי ?</ion-label>
+                                    </ion-list-header>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>כן</ion-label>
+                                        <ion-radio slot="start" [value]="true"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>לא</ion-label>
+                                        <ion-radio slot="start" [value]="false"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-item>
+                    <ion-item>
+                        <ion-radio-group name="shabatKeeper" [(ngModel)]="userInformation.isShabbatKeeper">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-list-header>
+                                        <ion-label>שומר שבת ?</ion-label>
+                                    </ion-list-header>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>כן</ion-label>
+                                        <ion-radio slot="start" [value]="true"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>לא</ion-label>
+                                        <ion-radio slot="start" [value]="false"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-item>
+                    <ion-item>
+                        <ion-radio-group name="isSmoking" [(ngModel)]="userInformation.isSmoking">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-list-header>
+                                        <ion-label>האם מעשן ?</ion-label>
+                                    </ion-list-header>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>כן</ion-label>
+                                        <ion-radio slot="start" [value]="true"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>לא</ion-label>
+                                        <ion-radio slot="start" [value]="false"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-item>
+                    <ion-item>
+                        <ion-radio-group name="traumaType" [(ngModel)]="userInformation.traumaType">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-list-header>
+                                        <ion-label>סוג טראומה</ion-label>
+                                    </ion-list-header>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>מיני</ion-label>
+                                        <ion-radio slot="start" value="SEX_ASSAULT"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label>צבא</ion-label>
+                                        <ion-radio slot="start" value="ARMY"></ion-radio>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-radio-group>
+                    </ion-item>
+                </ion-list>
+            </ion-slide>
+            <ion-slide>
+                <ion-list class="dates" inset lines="none">
+                    <ion-item>
+                        <ion-label>שעת שינה שגרתית</ion-label>
+                        <ion-datetime name="bedTime" display-format="HH"
+                                      [(ngModel)]="userInformation.sleep.bedHour"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>שעת קימה שגרתית</ion-label>
+                        <ion-datetime name="wakeTime" display-format="HH"
+                                      [(ngModel)]="userInformation.sleep.wakingHour"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>תאריך התקף ראשון</ion-label>
+                        <ion-datetime name="initialAttack" display-format="MMM DD, YYYY"
+                                      [(ngModel)]="userInformation.initialPanicAttackDate"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>מספר ילדים</ion-label>
+                                <ion-select>
+                                    <ion-select-option value="1">1</ion-select-option>
+                                    <ion-select-option value="2">2</ion-select-option>
+                                    <ion-select-option value="3">3</ion-select-option>
+                                    <ion-select-option value="4">4</ion-select-option>
+                                    <ion-select-option value="5">5</ion-select-option>
+                                    <ion-select-option value="6">6</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-list>
+                    </ion-item>
+                    <ion-item>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>שעות לחץ</ion-label>
+                                <ion-select multiple="true">
+                                    <ion-select-option [value]="1">01:00</ion-select-option>
+                                    <ion-select-option [value]="2">02:00</ion-select-option>
+                                    <ion-select-option [value]="3">03:00</ion-select-option>
+                                    <ion-select-option [value]="4">04:00</ion-select-option>
+                                    <ion-select-option [value]="5">05:00</ion-select-option>
+                                    <ion-select-option [value]="6">06:00</ion-select-option>
+                                    <ion-select-option [value]="7">07:00</ion-select-option>
+                                    <ion-select-option [value]="8">08:00</ion-select-option>
+                                    <ion-select-option [value]="9">09:00</ion-select-option>
+                                    <ion-select-option [value]="10">10:00</ion-select-option>
+                                    <ion-select-option [value]="11">11:00</ion-select-option>
+                                    <ion-select-option [value]="12">12:00</ion-select-option>
+                                    <ion-select-option [value]="13">13:00</ion-select-option>
+                                    <ion-select-option [value]="14">14:00</ion-select-option>
+                                    <ion-select-option [value]="15">15:00</ion-select-option>
+                                    <ion-select-option [value]="16">16:00</ion-select-option>
+                                    <ion-select-option [value]="17">17:00</ion-select-option>
+                                    <ion-select-option [value]="18">18:00</ion-select-option>
+                                    <ion-select-option [value]="19">19:00</ion-select-option>
+                                    <ion-select-option [value]="20">20:00</ion-select-option>
+                                    <ion-select-option [value]="21">21:00</ion-select-option>
+                                    <ion-select-option [value]="22">22:00</ion-select-option>
+                                    <ion-select-option [value]="23">23:00</ion-select-option>
+                                    <ion-select-option [value]="24">24:00</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-list>
+                    </ion-item>
+                </ion-list>
+            </ion-slide>
+            <ion-slide>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>אזורים מלחיצים</ion-label>
+                        <ion-select dir="rtl" multiple="true" (ionChange)="onChange($event)">
+                            <ion-select-option *ngFor="let place of places" [value]="place.type">
+                                {{place.title}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>מזג אוויר</ion-label>
+                        <ion-select multiple="true" dir="rtl">
+                            <ion-select-option *ngFor="let weather of weathers" [value]="weather.type">
+                                {{weather.title}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+            </ion-slide>
+        </ion-slides>
+        <ion-button class="signup-col" (click)="submit()">עדכון</ion-button>
     </form>
 </ion-content>
