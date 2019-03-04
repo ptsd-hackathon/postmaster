@@ -1,12 +1,28 @@
 <ion-content padding dir="rtl">
     <form (ngSubmit)="submit()" #registerForm="ngForm">
-        <ion-row>
-            <ion-col>
-                <ion-list inset>
+        <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide>
+                <ion-list inset lines="none">
                     <ion-item>
-                        <ion-label>טלפון</ion-label>
-                        <ion-input type="text" name="phone" [(ngModel)]="userInformation.phoneNumber" required></ion-input>
+                        <ion-input type="text" placeholder="טלפון" name="phone" [(ngModel)]="userInformation.phoneNumber" required></ion-input>
                     </ion-item>
+
+                    <ion-item>
+                        <ion-input type="text" placeholder="מדינה" name="state" [(ngModel)]="userInformation.address.state" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="עיר" name="city" [(ngModel)]="userInformation.address.city" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="רחוב" name="street" [(ngModel)]="userInformation.address.street" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="מספר בית" name="apartment" [(ngModel)]="userInformation.address.apartment" required></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-slide>
+            <ion-slide>
+                <ion-list inset  lines="none">
                     <ion-item>
                         <ion-radio-group name="gender" [(ngModel)]="userInformation.gender">
                             <ion-row>
@@ -31,12 +47,6 @@
                         </ion-radio-group>
                     </ion-item>
                     <ion-item>
-                        <ion-input type="text" placeholder="מדינה" name="state" [(ngModel)]="userInformation.address.state" required></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-input type="text" placeholder="מספר בית" name="apartment" [(ngModel)]="userInformation.address.apartment" required></ion-input>
-                    </ion-item>
-                    <ion-item>
                         <ion-radio-group name="isMarried" [(ngModel)]="userInformation.familyStatus.isMarried">
                             <ion-row>
                                 <ion-col>
@@ -59,10 +69,6 @@
                             </ion-row>
                         </ion-radio-group>
                     </ion-item>
-                </ion-list>
-            </ion-col>
-            <ion-col>
-                <ion-list inset>
                     <ion-item>
                         <ion-label>שעת שינה שגרתית</ion-label>
                         <ion-datetime name="bedTime" display-format="HH" [(ngModel)]="userInformation.sleep.bedHour" ></ion-datetime>
@@ -90,9 +96,7 @@
                             </ion-row>
                         </ion-radio-group>
                     </ion-item>
-                    <ion-item>
-                        <ion-input type="text" placeholder="עיר" name="city" [(ngModel)]="userInformation.address.city" required></ion-input>
-                    </ion-item>
+
                     <ion-item>
                         <ion-label>תאריך התקף ראשון</ion-label>
                         <ion-datetime name="initialAttack" display-format="MMM DD, YYYY" [(ngModel)]="userInformation.initialPanicAttackDate"></ion-datetime>
@@ -113,8 +117,8 @@
                         </ion-list>
                     </ion-item>
                 </ion-list>
-            </ion-col>
-            <ion-col>
+            </ion-slide>
+            <ion-slide>
                 <ion-list inset>
                     <ion-item>
                         <ion-label>שעת קימה שגרתית</ion-label>
@@ -143,9 +147,7 @@
                             </ion-row>
                         </ion-radio-group>
                     </ion-item>
-                    <ion-item>
-                        <ion-input type="text" placeholder="רחוב" name="street" [(ngModel)]="userInformation.address.street" required></ion-input>
-                    </ion-item>
+
                     <ion-item>
                         <ion-radio-group name="isSmoking" [(ngModel)]="userInformation.isSmoking">
                             <ion-row>
@@ -173,7 +175,7 @@
                         <ion-list>
                             <ion-item>
                                 <ion-label>שעות לחץ</ion-label>
-                                    <ion-select multiple="true">
+                                <ion-select multiple="true">
                                     <ion-select-option [value]="1">01:00</ion-select-option>
                                     <ion-select-option [value]="2">02:00</ion-select-option>
                                     <ion-select-option [value]="3">03:00</ion-select-option>
@@ -203,13 +205,14 @@
                         </ion-list>
                     </ion-item>
                 </ion-list>
-            </ion-col>
-        </ion-row>
+            </ion-slide>
+            <ion-slide></ion-slide>
+        </ion-slides>
         <ion-row>
             <ion-col>
             </ion-col>
             <ion-col class="signup-col">
-                <ion-button type="submit" color="primary" expand="block">שלח</ion-button>
+                <ion-button type="submit" expand="block">עדכון</ion-button>
             </ion-col>
             <ion-col>
             </ion-col>

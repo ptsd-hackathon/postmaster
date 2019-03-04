@@ -10,6 +10,10 @@ import {Address, UserInformation} from "../../types";
 })
 export class SettingsComponent implements OnInit {
 
+  slideOpts = {
+    effect: 'flip'
+  };
+
   userInformation: UserInformation = {
     gender: 0,
     phoneNumber: '',
