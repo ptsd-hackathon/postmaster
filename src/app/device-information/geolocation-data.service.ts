@@ -1,12 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
+import {SessionService} from "../session/session.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class GeolocationDataService {
-    constructor(private apollo: Apollo) {
+
+    constructor(private apollo: Apollo, private sessionService: SessionService) {
     }
 
     public getCurrentPositionEveryTenSeconds() {
@@ -22,6 +24,12 @@ export class GeolocationDataService {
         }, 10000);
     }
 
+    getEmail() {
+        this.sessionService.getSessionValue('userEmail').then((value => {
+            return value;
+        }));
+    }
+
     onSuccess(position) {
         this.apollo.mutate({
             mutation: gql`
@@ -33,7 +41,7 @@ export class GeolocationDataService {
                     }
                   `,
             variables: {
-                email: "hello@gmail.com",
+                email: 'hello@gmail.com',
                 location: {lat: position.coords.latitude, long: position.coords.longitude},
             },
         }).subscribe(({data}: { data: any }) => {
