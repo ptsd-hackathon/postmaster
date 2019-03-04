@@ -1,6 +1,9 @@
+ion-content{
+  --background: rgb(172, 241, 238) !important;
+}
+
 ion-input {
-  --background: #851c35;
-  --color: white;
+  --background: #fff;
   border-radius: 500px;
   margin: 0 0 25px 0;
 }
@@ -8,8 +11,4 @@ ion-input {
 ion-title {
   margin-top: 25px;
   margin-bottom: 12px;
-}
-
-ion-icon{
-  padding: 5px;
 }
