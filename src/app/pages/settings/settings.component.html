@@ -1,5 +1,5 @@
 <ion-content padding dir="rtl">
-    <form (ngSubmit)="submit()" #registerForm="ngForm">
+    <form #registerForm="ngForm">
         <ion-slides pager="true" [options]="slideOpts">
             <ion-slide>
                 <ion-list inset lines="none">
@@ -39,7 +39,7 @@
                                 <ion-col>
                                     <ion-item>
                                         <ion-label>זכר</ion-label>
-                                        <ion-radio slot="start" value="MALE" checked></ion-radio>
+                                        <ion-radio slot="start" value="MALE"></ion-radio>
                                     </ion-item>
                                 </ion-col>
                                 <ion-col>
@@ -62,7 +62,7 @@
                                 <ion-col>
                                     <ion-item>
                                         <ion-label>כן</ion-label>
-                                        <ion-radio slot="start" [value]="true" checked></ion-radio>
+                                        <ion-radio slot="start" [value]="true"></ion-radio>
                                     </ion-item>
                                 </ion-col>
                                 <ion-col>
@@ -85,7 +85,7 @@
                                 <ion-col>
                                     <ion-item>
                                         <ion-label>כן</ion-label>
-                                        <ion-radio slot="start" [value]="true" checked></ion-radio>
+                                        <ion-radio slot="start" [value]="true"></ion-radio>
                                     </ion-item>
                                 </ion-col>
                                 <ion-col>
@@ -108,7 +108,7 @@
                                 <ion-col>
                                     <ion-item>
                                         <ion-label>כן</ion-label>
-                                        <ion-radio slot="start" [value]="true" checked></ion-radio>
+                                        <ion-radio slot="start" [value]="true"></ion-radio>
                                     </ion-item>
                                 </ion-col>
                                 <ion-col>
@@ -131,7 +131,7 @@
                                 <ion-col>
                                     <ion-item>
                                         <ion-label>מיני</ion-label>
-                                        <ion-radio slot="start" value="SEX_ASSAULT" checked></ion-radio>
+                                        <ion-radio slot="start" value="SEX_ASSAULT"></ion-radio>
                                     </ion-item>
                                 </ion-col>
                                 <ion-col>
@@ -213,24 +213,26 @@
                 </ion-list>
             </ion-slide>
             <ion-slide>
-                <ion-item>
-                    <ion-list>
-                        <ion-item>
-                            <ion-label>אזורים מלחיצים</ion-label>
-                            <ion-select dir="rtl" multiple="true" (ionChange)="onChange($event)">
-                                <ion-select-option *ngFor="let place of places" [value]="place.type">
-                                    {{place.title}}
-                                </ion-select-option>
-                            </ion-select>
-                        </ion-item>
-                    </ion-list>
-                </ion-item>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>אזורים מלחיצים</ion-label>
+                        <ion-select dir="rtl" multiple="true" (ionChange)="onChange($event)">
+                            <ion-select-option *ngFor="let place of places" [value]="place.type">
+                                {{place.title}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>מזג אוויר</ion-label>
+                        <ion-select multiple="true" dir="rtl">
+                            <ion-select-option *ngFor="let weather of weathers" [value]="weather.type">
+                                {{weather.title}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
             </ion-slide>
         </ion-slides>
-        <!--<ion-row>-->
-        <div class="signup-col">
-            <ion-button type="submit" expand="block">עדכון</ion-button>
-        </div>
-        <!--</ion-row>-->
+        <ion-button class="signup-col" (click)="submit()">עדכון</ion-button>
     </form>
 </ion-content>
