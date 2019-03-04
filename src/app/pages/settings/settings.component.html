@@ -218,21 +218,19 @@
                         <ion-item>
                             <ion-label>אזורים מלחיצים</ion-label>
                             <ion-select dir="rtl" multiple="true">
-                                <ion-select-option *ngFor="let place of places" [value]="place.type" >{{place.title}}</ion-select-option>
+                                <ion-select-option *ngFor="let place of places" [value]="place.type">
+                                    {{place.title}}
+                                </ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-list>
                 </ion-item>
             </ion-slide>
         </ion-slides>
-        <ion-row>
-            <ion-col>
-            </ion-col>
-            <ion-col class="signup-col">
-                <ion-button type="submit" expand="block">עדכון</ion-button>
-            </ion-col>
-            <ion-col>
-            </ion-col>
-        </ion-row>
+        <!--<ion-row>-->
+        <div class="signup-col">
+            <ion-button type="submit" expand="block">עדכון</ion-button>
+        </div>
+        <!--</ion-row>-->
     </form>
 </ion-content>
