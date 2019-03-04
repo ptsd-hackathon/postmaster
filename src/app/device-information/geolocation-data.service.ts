@@ -18,19 +18,17 @@ export class GeolocationDataService {
         };
         setInterval(() => {
             navigator.geolocation.getCurrentPosition(
-                pos => this.onSuccess(pos),
+                pos => {
+                    this.sessionService.getSessionValue('userEmail').then(email => {
+                        this.onSuccess(email, pos);
+                    });
+                },
                 err => this.onError(err),
                 options);
         }, 10000);
     }
 
-    getEmail() {
-        this.sessionService.getSessionValue('userEmail').then((value => {
-            return value;
-        }));
-    }
-
-    onSuccess(position) {
+    onSuccess(email, position) {
         this.apollo.mutate({
             mutation: gql`
                     mutation sendLocation($email: String!, $location: LocationInput!) {
@@ -41,7 +39,7 @@ export class GeolocationDataService {
                     }
                   `,
             variables: {
-                email: 'hello@gmail.com',
+                email: email,
                 location: {lat: position.coords.latitude, long: position.coords.longitude},
             },
         }).subscribe(({data}: { data: any }) => {
