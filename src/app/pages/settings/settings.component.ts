@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
-import {Address, UserInformation} from "../../types";
+import { UserInformation } from "../../types";
 
 @Component({
     selector: 'app-settings',
@@ -10,6 +10,7 @@ import {Address, UserInformation} from "../../types";
 })
 export class SettingsComponent implements OnInit {
 
+    selectedPlaces;
     places;
 
     slideOpts = {
@@ -47,11 +48,15 @@ export class SettingsComponent implements OnInit {
             street: ''
         },
         stressHours: [undefined],
-        stressfullPlaces: ['']
+        stressfullPlaces: this.selectedPlaces
     };
 
     constructor(private apollo: Apollo) {
     }
+
+  onChange(x) {
+      this.selectedPlaces = x.detail.value;
+  }
 
     ngOnInit() {
         this.apollo.query({
@@ -83,6 +88,7 @@ export class SettingsComponent implements OnInit {
           $isShabbatKeeper: Boolean
           $address: AddressInput
           $traumaType: TraumaType
+          $stressfullPlaces: [String]
         ) {
           setUserSettings(
             userInfo: {
@@ -95,6 +101,7 @@ export class SettingsComponent implements OnInit {
               isShabbatKeeper: $isShabbatKeeper
               address: $address
               traumaType: $traumaType
+              stressfullPlaces: $stressfullPlaces
             }
           )
         }
@@ -103,9 +110,9 @@ export class SettingsComponent implements OnInit {
                 gender: this.userInformation.gender,
                 phoneNumber: this.userInformation.phoneNumber,
                 initialPanicAttackDate: {
-                    day: (this.userInformation.initialPanicAttackDate as any).split("-")[1],
-                    month: (this.userInformation.initialPanicAttackDate as any).split("-")[2],
-                    year: (this.userInformation.initialPanicAttackDate as any).split("-")[0]
+                    day: typeof this.userInformation.initialPanicAttackDate === 'string' ? (this.userInformation.initialPanicAttackDate as string).split("-")[1] : this.userInformation.initialPanicAttackDate.day,
+                    month: typeof this.userInformation.initialPanicAttackDate === 'string' ? (this.userInformation.initialPanicAttackDate as string).split("-")[2] : this.userInformation.initialPanicAttackDate.month,
+                    year: typeof this.userInformation.initialPanicAttackDate === 'string' ? (this.userInformation.initialPanicAttackDate as string).split("-")[0] : this.userInformation.initialPanicAttackDate.year
                 },
                 sleep: {
                     bedHour: this.userInformation.sleep.bedHour,
@@ -123,7 +130,8 @@ export class SettingsComponent implements OnInit {
                     state: this.userInformation.address.state,
                     street: this.userInformation.address.street
                 },
-                traumaType: this.userInformation.traumaType
+                traumaType: this.userInformation.traumaType,
+                stressfullPlaces: this.userInformation.stressfullPlaces
             },
         }).subscribe(({data}: { data: any }) => {
             if (data.setUserSettings) {
